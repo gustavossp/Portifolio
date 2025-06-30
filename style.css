@@ -1,0 +1,825 @@
+/* Custom properties for colors (Dark Theme by default) */
+:root {
+  --bg: #000000; /* Fundo puro preto */
+  --text: #f4f4f4;
+  --primary: #10b981; /* Tailwind 'emerald-500' */
+  --secondary: #059669; /* Tailwind 'emerald-600' */
+  --card-bg: #1a1a1a;
+  --card-shadow: rgba(0, 0, 0, 0.4);
+  --border-color: #333;
+}
+
+/* Light Theme properties */
+body.light-theme {
+  --bg: #f4f4f4; /* Fundo claro */
+  --text: #1a1a1a;
+  --primary: #047857; /* Darker emerald for contrast */
+  --secondary: #065f46;
+  --card-bg: #ffffff;
+  --card-shadow: rgba(0, 0, 0, 0.1);
+  --border-color: #e0e0e0;
+}
+
+/* Base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg); /* Agora o body controla o background diretamente */
+  color: var(--text);
+  line-height: 1.6;
+  transition: background 0.3s ease, color 0.3s ease; /* Smooth theme transition */
+  padding-left: 130px; /* Space for fixed name on desktop */
+  
+}
+
+/* Container for consistent content width */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem; /* Padding for mobile and larger screens */
+}
+
+/* Header styles */
+header {
+  padding: 1.5rem 2rem;
+  display: flex;
+  justify-content: space-between; /* Agora cobre a barra toda */
+  align-items: center;
+  height: 80px;
+  background: var(--bg);
+  width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px var(--card-shadow);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+header h1 {
+  position: fixed; /* Posição fixa para o nome */
+  top: 20px;
+  left: 30px;
+  font-size: 2rem; /* Tamanho maior para destaque */
+  color: var(--primary);
+  z-index: 1001; /* Maior que o cabeçalho para visibilidade */
+  text-shadow: 0 0 5px rgba(16, 185, 129, 0.5); /* Efeito de brilho sutil */
+}
+
+/* Navigation styles */
+nav ul {
+  display: flex;
+  gap: 2rem; /* Aumento do espaçamento para melhor legibilidade */
+  list-style: none;
+  display: flex;
+  align-items: center;
+}
+
+nav a {
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 600; /* Mais negrito para legibilidade */
+  transition: color 0.3s ease, transform 0.2s ease;
+  position: relative;
+  padding-bottom: 5px; /* Espaço para efeito de sublinhado */
+}
+
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--primary);
+  transition: width 0.3s ease-in-out;
+}
+
+nav a:hover::after,
+nav a.active::after { /* Adiciona 'active' class para a seção atual */
+  width: 100%;
+}
+
+nav a:hover {
+  color: var(--primary);
+  transform: translateY(-2px); /* Leve levantamento ao passar o mouse */
+}
+
+/* Theme toggle button */
+#theme-toggle,
+.nav-theme-toggle {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 1.5rem;
+  transition: background 0.3s ease, border-color 0.3s ease, transform 0.2s ease;
+  color: var(--text);
+  padding: 0;
+  margin: 0; /* ✅ Agora ele alinha como os outros */
+}
+
+
+#theme-toggle:hover {
+  background: var(--primary);
+  border-color: var(--primary);
+  transform: scale(1.1);
+  box-shadow: 0 0 10px var(--primary);
+}
+
+/* Hero section */
+.hero {
+  text-align: center;
+  padding: 10rem 1.5rem 6rem; /* Padding ajustado */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: calc(100vh - 100px); /* Ajusta com base na altura do cabeçalho */
+  align-items: center;
+}
+
+.hero h2 {
+  font-size: 3.5rem; /* Fonte maior para impacto */
+  color: var(--primary);
+  margin-bottom: 1rem;
+  animation: fadeIn 1s ease-out; /* Animação simples de fade-in */
+}
+
+.hero p {
+  font-size: 1.3rem; /* Texto de parágrafo maior */
+  max-width: 700px;
+  margin-bottom: 2.5rem;
+  animation: slideInUp 1s ease-out 0.3s forwards; /* Desliza para cima após o fade-in */
+  opacity: 0; /* Começa invisível para animação */
+}
+
+/* Call to action button */
+.btn-cta {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: var(--primary);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+}
+
+.btn-cta:hover {
+  background: var(--secondary);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.6);
+}
+
+/* Section general styles */
+section {
+  padding: 6rem 1.5rem; /* Padding consistente para as seções */
+  min-height: 50vh; /* Garante que as seções tenham uma altura mínima */
+}
+
+h2 {
+  font-size: 2.8rem; /* Tamanho de cabeçalho consistente */
+  color: var(--primary);
+  margin-bottom: 2.5rem;
+  text-align: center; /* Centraliza os títulos das seções */
+  position: relative;
+}
+
+h2::after { /* Efeito de sublinhado para H2 */
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 4px;
+  background-color: var(--primary);
+  border-radius: 2px;
+}
+
+/* About section specific styles */
+#sobre p {
+  font-size: 1.1rem;
+  max-width: 900px;
+  margin: 1.5rem auto; /* Centraliza os parágrafos e adiciona espaçamento */
+  text-align: justify;
+}
+
+/* Projects grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Grid responsivo */
+  gap: 2.5rem; /* Aumento do espaçamento */
+}
+
+/* Card base styles */
+.card {
+  background: var(--card-bg);
+  padding: 2rem; /* Aumento do padding */
+  border-radius: 1.25rem; /* Cantos mais arredondados */
+  box-shadow: 0 8px 25px var(--card-shadow); /* Sombra mais pronunciada */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-10px); /* Efeito de levantamento ao passar o mouse */
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* Project card specific styles */
+.projeto-card h3 {
+  font-size: 1.8rem;
+  color: var(--primary);
+  margin-bottom: 1rem;
+}
+
+.projeto-card p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+}
+
+.projeto-card ul {
+  list-style: none;
+  margin-bottom: 1rem;
+  padding-left: 0;
+}
+
+.projeto-card ul li {
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: flex-start;
+  font-size: 0.95rem;
+}
+
+.projeto-card ul li::before { /* Marcador de lista personalizado */
+  content: '✓';
+  color: var(--primary);
+  margin-right: 0.5rem;
+  font-weight: bold;
+}
+
+.projeto-screenshot {
+  width: 100%;
+  height: 220px; /* Altura fixa para consistência */
+  object-fit: cover; /* Garante que a imagem cubra a área */
+  border-radius: 0.75rem; /* Cantos arredondados para a imagem */
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--border-color); /* Borda sutil */
+}
+
+.projeto-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: auto; /* Empurra os links para a parte inferior do cartão */
+  flex-wrap: wrap; /* Permite quebrar em telas pequenas */
+}
+
+.btn-projeto {
+  display: inline-flex; /* Usa flex para alinhamento */
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem 1.8rem; /* Padding ajustado */
+  background: var(--primary);
+  color: #fff;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 3px 10px rgba(16, 185, 129, 0.3);
+  white-space: nowrap; /* Evita quebra de texto */
+}
+
+.btn-projeto:hover {
+  background: var(--secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(16, 185, 129, 0.5);
+}
+
+.btn-github {
+  background: #333; /* Fundo mais escuro para o botão GitHub */
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.btn-github:hover {
+  background: #555;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Skills section */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.skill-category {
+  background: var(--card-bg);
+  padding: 1.8rem;
+  border-radius: 1.25rem;
+  box-shadow: 0 6px 20px var(--card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 1px solid var(--border-color); /* Borda sutil */
+}
+
+.skill-category:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 9px 25px rgba(0, 0, 0, 0.5);
+}
+
+.skill-category h3 {
+  color: var(--primary);
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--secondary); /* Efeito de sublinhado para o título da categoria */
+  padding-bottom: 0.5rem;
+}
+
+.skills-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.skills-list li {
+  margin-bottom: 0.7rem;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+}
+
+.skills-list li::before {
+  content: '⭐'; /* Marcador de lista emoji */
+  margin-right: 0.7rem;
+  font-size: 1.2rem;
+}
+
+/* Contact section */
+#contato {
+  padding: 6rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 85vh; /* Ajustado para conteúdo e rodapé */
+}
+
+#contato h2 {
+  margin-bottom: 1.5rem;
+}
+
+#contato p {
+  font-size: 1.1rem;
+  margin-bottom: 2.5rem;
+  max-width: 600px;
+}
+
+#contato form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem; /* Aumento do espaçamento */
+  width: 100%;
+  max-width: 700px; /* Largura máxima ligeiramente maior */
+  background: var(--card-bg); /* Fundo do formulário */
+  padding: 2.5rem;
+  border-radius: 1.25rem;
+  box-shadow: 0 8px 25px var(--card-shadow);
+  border: 1px solid var(--border-color);
+}
+
+#contato input,
+#contato textarea {
+  width: 100%;
+  padding: 1.2rem; /* Aumento do padding */
+  font-size: 1.1rem;
+  border-radius: 10px;
+  border: 1px solid var(--border-color); /* Borda sutil */
+  outline: none;
+  background: var(--bg); /* Fundo do input */
+  color: var(--text);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#contato input:focus,
+#contato textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.3); /* Anel de foco */
+}
+
+#contato textarea {
+  min-height: 150px; /* Altura mínima aumentada */
+  resize: vertical; /* Permite redimensionamento vertical */
+}
+
+#contato button[type="submit"] {
+  padding: 1rem 3rem; /* Botão maior */
+  font-size: 1.2rem;
+  background: var(--primary);
+  border-radius: 999px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+  box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+}
+
+#contato button[type="submit"]:hover {
+  background: var(--secondary);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.6);
+}
+
+/* Footer styles */
+footer {
+  text-align: center;
+  padding: 3rem 1.5rem; /* Mais padding */
+  background: var(--card-bg); /* Combina com o fundo do cartão para consistência */
+  border-top: 1px solid var(--border-color); /* Separador */
+  transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+footer p {
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  color: var(--text);
+}
+
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem; /* Espaço entre os links */
+}
+
+.social-links a {
+  color: var(--text);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease, transform 0.2s ease;
+  font-size: 1.1rem;
+}
+
+.social-links a:hover {
+  color: var(--primary);
+  transform: translateY(-2px);
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+
+/* Media Queries for Responsiveness */
+
+/* Tablet and smaller desktops */
+@media (max-width: 1024px) {
+  body {
+    padding-left: 0; /* Remove padding fixo para mobile e tablet */
+  }
+
+  header {
+    justify-content: space-between; /* Espaça os elementos */
+    padding: 1.5rem 1.5rem; /* Ajusta o padding */
+  }
+
+  header h1 {
+    position: static; /* Torna h1 estático no fluxo */
+    font-size: 1.8rem; /* Ligeiramente menor para tablets */
+    margin-right: 1rem; /* Espaço entre h1 e nav */
+  }
+
+  nav ul {
+    gap: 1.5rem; /* Espaçamento ligeiramente menor */
+  }
+
+  nav a {
+    font-size: 1rem; /* Ajusta o tamanho da fonte para legibilidade */
+  }
+
+  .hero h2 {
+    font-size: 3.2rem; /* Título do hero ligeiramente menor */
+  }
+
+  .hero p {
+    font-size: 1.2rem; /* Tamanho do parágrafo ajustado */
+  }
+
+  h2 {
+    font-size: 2.5rem; /* Tamanho do título da seção ajustado */
+  }
+
+  h2::after {
+    width: 70px; /* Ajusta o comprimento do sublinhado */
+  }
+
+  #sobre p {
+    font-size: 1.05rem; /* Pequeno ajuste */
+  }
+
+  .grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Continua com grid flexível */
+  }
+
+  .projeto-card h3 {
+    font-size: 1.6rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Ajuste da grid de skills */
+  }
+
+  .skill-category h3 {
+    font-size: 1.4rem;
+  }
+}
+
+/* Mobile devices (Smallest screens up to 768px) */
+@media (max-width: 768px) {
+  section {
+    padding: 3rem 1rem; /* Padding reduzido para seções mobile */
+  }
+
+  .container {
+    padding: 0 1rem; /* Padding do container reduzido */
+  }
+
+  header {
+    flex-direction: row; /* Mantém elementos do cabeçalho na mesma linha */
+    justify-content: space-between; /* Espaça H1 e NAV/Button */
+    align-items: center; /* Alinha verticalmente */
+    padding: 1rem; /* Padding reduzido do cabeçalho */
+  }
+
+  header h1 {
+    margin-bottom: 0; /* Remove margem inferior no H1 */
+    font-size: 1.6rem; /* H1 menor no mobile */
+    position: static; /* Remove position fixed */
+    left: auto;
+    top: auto;
+    text-shadow: none; /* Remove text-shadow para mobile */
+  }
+
+  nav {
+    flex-grow: 1; /* Permite que a nav ocupe espaço disponível */
+    margin-top: 0; /* Remove margem superior */
+    padding-left: 1rem; /* Espaçamento entre o título e a navegação */
+    overflow-x: auto; /* Adiciona scroll horizontal se necessário */
+    -webkit-overflow-scrolling: touch; /* Melhora o scroll em iOS */
+  }
+
+  nav ul {
+    flex-wrap: nowrap; /* Impede quebra de linha dos itens de navegação */
+    justify-content: flex-start; /* Alinha itens à esquerda no scroll */
+    gap: 1rem; /* Espaçamento menor para itens de navegação */
+  }
+
+  nav li {
+    flex-shrink: 0; /* Impede que os itens encolham */
+    flex-basis: auto; /* Remove flex-basis fixa */
+    text-align: center;
+  }
+
+  nav a {
+    font-size: 0.9rem; 
+    padding: 0.5rem 0.7rem; 
+  }
+
+  #theme-toggle {
+    position: static; 
+    margin-left: 1rem; 
+    width: 40px; 
+    height: 40px;
+    font-size: 1.3rem;
+  }
+
+  .hero {
+    padding: 6rem 1rem 3rem; 
+    min-height: calc(100vh - 60px); 
+  }
+
+  .hero h2 {
+    font-size: 2.2rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .btn-cta {
+    padding: 0.8rem 2rem;
+    font-size: 1rem;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  h2::after {
+    width: 50px; 
+  }
+
+  #sobre p {
+    font-size: 0.95rem;
+    margin: 1rem auto;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem; 
+  }
+
+  .card {
+    padding: 1.5rem; 
+    border-radius: 1rem;
+  }
+
+  .projeto-card h3 {
+    font-size: 1.3rem; 
+  }
+
+  .projeto-card p,
+  .projeto-card ul li {
+    font-size: 0.9rem; 
+  }
+
+  .projeto-screenshot {
+    height: 180px; 
+  }
+
+  .projeto-links {
+    flex-direction: column; 
+    gap: 0.8rem;
+  }
+
+  .btn-projeto {
+    width: 100%; 
+    padding: 0.6rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .skills-grid {
+    grid-template-columns: 1fr; 
+    gap: 1.5rem;
+  }
+
+  .skill-category {
+    padding: 1.5rem;
+    border-radius: 1rem;
+  }
+
+  .skill-category h3 {
+    font-size: 1.25rem;
+  }
+
+  .skills-list li {
+    font-size: 0.95rem;
+  }
+
+  #contato {
+    padding: 4rem 1rem;
+    min-height: auto; 
+  }
+
+  #contato p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  #contato form {
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+
+  #contato input,
+  #contato textarea {
+    padding: 0.8rem;
+    font-size: 0.95rem;
+  }
+
+  #contato textarea {
+    min-height: 80px; 
+  }
+
+  #contato button[type="submit"] {
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  footer {
+    padding: 2rem 1rem;
+  }
+
+  footer p {
+    font-size: 0.8rem;
+  }
+
+  .social-links a {
+    font-size: 1rem;
+  }
+}
+
+
+@media (max-width: 480px) {
+  
+  
+  .hero h2 {
+    font-size: 1.8rem;
+  }
+
+  .hero p {
+    font-size: 0.9rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  .projeto-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .projeto-card p,
+  .projeto-card ul li {
+    font-size: 0.85rem;
+  }
+
+  .skill-category h3 {
+    font-size: 1.15rem;
+  }
+}
+
+.foto-perfil {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid var(--primary);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  margin-bottom: 2rem;
+  transition: transform 0.3s ease;
+}
+.foto-perfil:hover {
+  transform: scale(1.05);
+}
+
+
+body {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+  color: var(--text);
+}
+
+
+body.light-theme {
+  background: linear-gradient(135deg, #f0fdf4 0%, #d1fae5 50%, #f0fdf4 100%);
+}
+
+body {
+  padding-left: 0;
+}
+
+
+.full-width-header,
+.full-width-footer {
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  left: 0;
+  position: relative;
+}
+
+
+header h1 {
+  position: relative;
+  top: auto;
+  left: auto;
+  font-size: 2rem;
+  color: var(--primary);
+  z-index: 1001;
+}
