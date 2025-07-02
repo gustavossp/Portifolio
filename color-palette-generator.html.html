@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Estilos do Gerador de Paletas de Cores */
+        
         :root {
             --bg-color: #1a1a1a;
             --text-color: #f4f4f4;
@@ -213,12 +213,12 @@
     <div class="container">
         <h1>Gerador de Paletas de Cores</h1>
         <div class="color-palette" id="color-palette">
-            <!-- As caixas de cores serão geradas aqui pelo JavaScript -->
+           
         </div>
         <button class="generate-button" id="generate-button">Gerar Nova Paleta</button>
     </div>
 
-    <!-- Mensagem de feedback para copiar -->
+    
     <div id="message-box" class="message-box"></div>
 
     <script>
@@ -226,16 +226,16 @@
             const colorPaletteContainer = document.getElementById('color-palette');
             const generateButton = document.getElementById('generate-button');
             const messageBox = document.getElementById('message-box');
-            const numberOfColors = 5; // Define o número de cores na paleta
-            let colorBoxes = []; // Array para armazenar as referências das caixas de cores
+            const numberOfColors = 5;
+            let colorBoxes = []; 
 
-            // Função para gerar uma cor hexadecimal aleatória
+            
             function generateRandomHexColor() {
                 // Gera 6 dígitos hexadecimais aleatórios
                 return '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
             }
 
-            // Função para exibir uma mensagem temporária
+            
             function showMessage(message, duration = 2000) {
                 messageBox.textContent = message;
                 messageBox.classList.add('show');
@@ -244,9 +244,9 @@
                 }, duration);
             }
 
-            // Função para copiar o texto para a área de transferência
+            
             function copyToClipboard(text) {
-                // Usando document.execCommand('copy') por compatibilidade com iFrames
+                
                 const tempInput = document.createElement('textarea');
                 tempInput.value = text;
                 document.body.appendChild(tempInput);
@@ -266,11 +266,11 @@
                 const colorBox = document.createElement('div');
                 colorBox.classList.add('color-box');
                 colorBox.style.backgroundColor = color;
-                colorBox.dataset.color = color; // Armazena a cor no dataset
+                colorBox.dataset.color = color; 
 
                 const lockButton = document.createElement('button');
                 lockButton.classList.add('lock-button');
-                lockButton.innerHTML = '&#128275;'; // Ícone de cadeado aberto
+                lockButton.innerHTML = '&#128275;'; 
                 lockButton.title = 'Travar cor';
                 lockButton.dataset.locked = 'false';
 
@@ -281,15 +281,15 @@
                 colorBox.appendChild(lockButton);
                 colorBox.appendChild(colorCode);
 
-                // Event listener para copiar a cor ao clicar na caixa
+                
                 colorBox.addEventListener('click', (event) => {
-                    // Impede que o clique no botão de cadeado ative a cópia
+                   
                     if (event.target !== lockButton) {
                         copyToClipboard(colorBox.dataset.color);
                     }
                 });
 
-                // Event listener para o botão de travar/destravar
+                
                 lockButton.addEventListener('click', () => {
                     const isLocked = lockButton.dataset.locked === 'true';
                     lockButton.dataset.locked = isLocked ? 'false' : 'true';
@@ -304,14 +304,14 @@
 
             // Função para gerar e exibir a paleta de cores
             function generatePalette() {
-                if (colorBoxes.length === 0) { // Primeira vez, cria todas as caixas
+                if (colorBoxes.length === 0) { 
                     for (let i = 0; i < numberOfColors; i++) {
                         const newColor = generateRandomHexColor();
                         const box = createColorBox(newColor);
                         colorPaletteContainer.appendChild(box);
                         colorBoxes.push(box);
                     }
-                } else { // Atualiza as cores, respeitando as travadas
+                } else { 
                     colorBoxes.forEach(box => {
                         const isLocked = box.querySelector('.lock-button').dataset.locked === 'true';
                         if (!isLocked) {
@@ -324,10 +324,10 @@
                 }
             }
 
-            // Event listener para o botão "Gerar Nova Paleta"
+            
             generateButton.addEventListener('click', generatePalette);
 
-            // Geração inicial da paleta ao carregar a página
+            
             generatePalette();
         });
     </script>
